@@ -1,5 +1,3 @@
-
-import com.mycompany.teste1.Conta;
 import com.mycompany.teste1.Residencial;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -18,7 +16,9 @@ import org.junit.jupiter.api.Test;
  *
  * @author Danilo Alves
  */
-public class classeDeTeste {
+public class classeDeTesteResidencial {
+    private Residencial conta = new Residencial();
+
     @BeforeAll
     static void inicializando() {
         System.out.println("Inicializando recursos...");
@@ -30,9 +30,20 @@ public class classeDeTeste {
     }
      
     @Test
-    @DisplayName("Teste de conta residencial")
-    void testResidencial() {
-       Residencial conta = new Residencial();
-       Assertions.assertEquals(0, conta.calcularMulta(199.0), "Passou no teste");
+    @DisplayName("Teste de multa conta residencial = zero")
+    void testeMultaResidencial() {
+       Assertions.assertEquals(0, conta.calcularMulta(200), "Passou no teste Multa");
+    }
+    
+    @Test
+    @DisplayName("Teste de conta residencial = sem multa")
+    void testeContaResidSemMulta() {
+       Assertions.assertEquals(50, conta.calcularConta(200), "Passou no teste Conta sem multa");
+    }
+    
+    @Test
+    @DisplayName("Teste de conta residencial = com multa")
+    void testeContaResidComMulta() {
+       Assertions.assertEquals(226, conta.calcularConta(1000), "Passou no teste Conta com multa");
     }
 }
